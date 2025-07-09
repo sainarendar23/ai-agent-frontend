@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Reply, Star, Check, AlertCircle } from "lucide-react";
 import api from "../api";
 
-api.get("/api/credentials"); // ✅ Automatically uses baseURL from .env
+api.get("/credentials"); // ✅ Automatically uses baseURL from .env
 
 
 interface Activity {

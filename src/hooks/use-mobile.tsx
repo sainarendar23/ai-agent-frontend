@@ -1,7 +1,7 @@
 import * as React from "react"
 import api from "../api";
 
-api.get("/api/credentials"); // ✅ Automatically uses baseURL from .env
+api.get("/credentials"); // ✅ Automatically uses baseURL from .env
 
 
 const MOBILE_BREAKPOINT = 768

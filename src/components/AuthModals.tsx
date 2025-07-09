@@ -41,17 +41,17 @@ export default function AuthModals({
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Redirect to API login endpoint
-    window.location.href = "/api/login";
+    window.location.href = "/login";
   };
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
     // Redirect to API login endpoint for signup
-    window.location.href = "/api/login";
+    window.location.href = "/login";
   };
 
   const handleGoogleAuth = () => {
-    window.location.href = "/api/login";
+    window.location.href = "/login";
   };
 
   return (
