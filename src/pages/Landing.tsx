@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
 import { Bot, Mail, Star, TrendingUp, ArrowRight, Check, Play, Github, Briefcase, FileText, MessageSquare, Code, BarChart3 } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import WelcomeModal from "@/components/WelcomeModal";
-import AuthModals from "@/components/AuthModals";
-import PaymentModal from "@/components/PaymentModal";
+import Navbar from "../components/Navbar";
+import WelcomeModal from "../components/WelcomeModal";
+import AuthModals from "../components/AuthModals";
+import PaymentModal from "../components/PaymentModal";
 
 export default function Landing() {
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);

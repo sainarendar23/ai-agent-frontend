@@ -3,12 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "@/lib/validations/auth";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
-import api from "@/lib/api";
-import { toast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card } from "@/components/ui/card";
+import api from "../api";
+import { toast } from "../hooks/use-toast";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Card } from "../components/ui/card";
 import { useNavigate } from "wouter";
 
 type SignupData = z.infer<typeof signupSchema>;
