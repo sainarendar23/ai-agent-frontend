@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/lib/validations/auth";
+import { loginSchema } from "../lib/validations/auth";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import api from "../api";
@@ -9,12 +9,12 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Card } from "../components/ui/card";
-import { useNavigate } from "wouter";
+import { useLocation } from "wouter"; // ✅ Corrected
 
 type LoginData = z.infer<typeof loginSchema>;
 
 export default function Login() {
-  const navigate = useNavigate();
+  const [, navigate] = useLocation(); // ✅ Corrected
 
   const {
     register,

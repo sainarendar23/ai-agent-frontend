@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signupSchema } from "@/lib/validations/auth";
+import { signupSchema } from "../lib/validations/auth";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import api from "../api";
@@ -9,12 +9,13 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Card } from "../components/ui/card";
-import { useNavigate } from "wouter";
+import { useLocation } from "wouter"; // ✅ Correct hook for wouter
 
 type SignupData = z.infer<typeof signupSchema>;
 
 export default function Signup() {
-  const navigate = useNavigate();
+  const [, navigate] = useLocation(); // ✅ Replace useNavigate
+
   const {
     register,
     handleSubmit,
