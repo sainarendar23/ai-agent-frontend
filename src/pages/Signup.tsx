@@ -26,7 +26,7 @@ export default function Signup() {
 
   const mutation = useMutation({
     mutationFn: (data: SignupData) =>
-      api.post("/api/signup", data).then((res) => res.data),
+      api.post("/signup", data).then((res) => res.data),
     onSuccess: () => {
       toast({ title: "Signup successful", description: "Please login now." });
       navigate("/login");

@@ -65,7 +65,7 @@ export default function Dashboard() {
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/api/login";
+        window.location.href = "/login";
       }, 500);
       return;
     }
@@ -89,7 +89,7 @@ export default function Dashboard() {
 
   // Fetch user credentials
   const { data: userCredentials, isLoading: credentialsLoading } = useQuery({
-    queryKey: ["/api/credentials"],
+    queryKey: ["/credentials"],
     enabled: !!user,
     onError: (error) => {
       if (isUnauthorizedError(error)) {
@@ -99,7 +99,7 @@ export default function Dashboard() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -108,7 +108,7 @@ export default function Dashboard() {
 
   // Fetch stats
   const { data: stats } = useQuery({
-    queryKey: ["/api/stats"],
+    queryKey: ["/stats"],
     enabled: !!user,
     onError: (error) => {
       if (isUnauthorizedError(error)) {
@@ -118,7 +118,7 @@ export default function Dashboard() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -127,7 +127,7 @@ export default function Dashboard() {
 
   // Fetch activities
   const { data: activities } = useQuery({
-    queryKey: ["/api/activities"],
+    queryKey: ["/activities"],
     enabled: !!user,
     onError: (error) => {
       if (isUnauthorizedError(error)) {
@@ -137,7 +137,7 @@ export default function Dashboard() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -159,10 +159,10 @@ export default function Dashboard() {
   // Update credentials mutation
   const updateCredentialsMutation = useMutation({
     mutationFn: async (data: any) => {
-      await apiRequest("POST", "/api/credentials", data);
+      await apiRequest("POST", "/credentials", data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/credentials"] });
+      queryClient.invalidateQueries({ queryKey: ["/credentials"] });
       toast({
         title: "Success",
         description: "Credentials updated successfully",
@@ -176,7 +176,7 @@ export default function Dashboard() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -191,11 +191,11 @@ export default function Dashboard() {
   // Agent control mutations
   const startAgentMutation = useMutation({
     mutationFn: async () => {
-      await apiRequest("POST", "/api/agent/start");
+      await apiRequest("POST", "/agent/start");
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/credentials"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/activities"] });
+      queryClient.invalidateQueries({ queryKey: ["/credentials"] });
+      queryClient.invalidateQueries({ queryKey: ["/activities"] });
       toast({
         title: "Success",
         description: "Agent started successfully",
@@ -209,7 +209,7 @@ export default function Dashboard() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -223,11 +223,11 @@ export default function Dashboard() {
 
   const stopAgentMutation = useMutation({
     mutationFn: async () => {
-      await apiRequest("POST", "/api/agent/stop");
+      await apiRequest("POST", "/agent/stop");
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/credentials"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/activities"] });
+      queryClient.invalidateQueries({ queryKey: ["/credentials"] });
+      queryClient.invalidateQueries({ queryKey: ["/activities"] });
       toast({
         title: "Success",
         description: "Agent stopped successfully",
@@ -241,7 +241,7 @@ export default function Dashboard() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -267,7 +267,7 @@ export default function Dashboard() {
 
   const handleGmailConnect = async () => {
     try {
-      const response = await apiRequest("GET", "/api/gmail/auth");
+      const response = await apiRequest("GET", "/gmail/auth");
       const data = await response.json();
       window.location.href = data.authUrl;
     } catch (error) {
@@ -278,7 +278,7 @@ export default function Dashboard() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -291,7 +291,7 @@ export default function Dashboard() {
   };
 
   const handleLogout = () => {
-    window.location.href = "/api/logout";
+    window.location.href = "/logout";
   };
 
   if (isLoading || credentialsLoading) {
