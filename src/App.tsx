@@ -8,8 +8,8 @@ import { useAuth } from "./hooks/useAuth";
 // ✅ Pages
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
-import Signup from "./pages/Signup";     // Make sure this file exists
-import Login from "./pages/Login";       // Make sure this file exists
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import NotFound from "./pages/not-found";
 
 function Router() {
@@ -17,17 +17,10 @@ function Router() {
 
   return (
     <Switch>
-      {/* Public Routes */}
       <Route path="/" component={Landing} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
-
-      {/* Protected Route */}
-      {isAuthenticated && (
-        <Route path="/dashboard" component={Dashboard} />
-      )}
-
-      {/* Fallback Route */}
+      <Route path="/dashboard" component={Dashboard} />
       <Route component={NotFound} />
     </Switch>
   );
