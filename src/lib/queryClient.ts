@@ -1,5 +1,8 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
+// Use VITE_API_BASE_URL and make sure it doesn't end with a slash
+const BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "");
+
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
@@ -9,10 +12,10 @@ async function throwIfResNotOk(res: Response) {
 
 export async function apiRequest(
   method: string,
-  url: string,
-  data?: unknown | undefined,
+  path: string,
+  data?: unknown
 ): Promise<Response> {
-  const res = await fetch(url, {
+  const res = await fetch(`${BASE_URL}${path}`, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
@@ -24,12 +27,14 @@ export async function apiRequest(
 }
 
 type UnauthorizedBehavior = "returnNull" | "throw";
+
 export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey[0] as string, {
+    const path = queryKey[0] as string;
+    const res = await fetch(`${BASE_URL}${path}`, {
       credentials: "include",
     });
 
